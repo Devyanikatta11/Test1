@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang='<en>'>
+<head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <title>Page Title</title>
+    <link rel='stylesheet' href='main.css'>
+</head>
+<body>
+    <form name="f1">
+        UID : <input type="text" name="userid" id="UID"/>
+
+        <span id="UIDerror" style="color: red;"></span>
+        <br/>
+        Password:<input type="text" name="pass" id="password"/>
+        <br/>
+        Gender : <input type="radio" name="gender" value="Male"/>Male
+                 <input type="radio" name="gender" value="female"/> female
+        <br/>
+        City : <select name="city" id="def">
+            <option value="City" >Select City</option>
+            <option value="Pune">Pune</option>
+            <option value="Nagpur">Nagpur</option>
+            <option value="Mumbai">Mumbai</option>
+
+
+        </option></select>
+
+        <input type="button" value="submit" onclick="validate()"/>
+    </form>
+
+    <script>
+
+        function validate(){
+            alert(document.getElementById("UID").value);
+            let userid = document.getElementById("UID").value
+            let password =document.getElementById("password").value
+            let regexp_UID = /^[\w.]{8,12}$/
+            if(!regexp_UID.test(userid)){
+                //alert("Invalid Userid ")
+                document.getElementById("UIDerror").innerHTML="Invalid UserID";
+                document.getElementById("UID").value=""
+                document.getElementById("UID").focus();
+                return;
+            }
+            else{
+                document.getElementById("UIDerror").innerHTML="";
+            }
+            if(!(password.length>=6 && password.length<=12)){
+                alert("Password length should be between 6 to 12");
+                document.getElementById("password").value=""
+                document.getElementById("password").focus();
+                return
+            }
+            if(document.f1.gender.value==""){
+                alert("Select Gender")
+            }
+            if(document.getElementById("def").value=="City"){
+                alert("Please Select City")
+            }
+            alert("Data is Getting Submitted")
+            document.f1.submit();
+
+            
+        }
+    </script>
+
+
+</body>
+</html>
